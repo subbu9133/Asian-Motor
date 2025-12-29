@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { cars } from '../../data/cars';
 import { Fuel, Gauge, Settings, Calendar, ArrowLeft, Check, Shield, CircleDollarSign } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 
 export function CarDetailsPage() {
     const { id } = useParams();
+    const navigate = useNavigate();
     const car = cars.find(c => c.id === Number(id));
     // State for active image, default to main image. 
     // We'll combine main image + gallery for the list.
@@ -97,7 +98,10 @@ export function CarDetailsPage() {
                         {/* Quick Actions / Add to Cart style */}
                         <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 space-y-4">
                             <div className="flex gap-4">
-                                <button className="flex-1 bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/20">
+                                <button
+                                    onClick={() => navigate('/', { state: { scrollTo: 'contact' } })}
+                                    className="flex-1 bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/20"
+                                >
                                     Book Test Drive
                                 </button>
                                 <button className="flex-1 bg-white border border-gray-300 text-gray-900 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors">
@@ -155,14 +159,14 @@ export function CarDetailsPage() {
                         </div>
                     </div>
                     <div>
-                        {/* Additional sidebar info if needed, or leave empty/banner */}
+                        {/* Additional sidebar info if needed, or leave empty/banner
                         <div className="bg-blue-600 text-white rounded-2xl p-8 text-center">
                             <h3 className="text-xl font-bold mb-4">Have Questions?</h3>
                             <p className="mb-6 text-blue-100">Our specialists are here to help you find your dream car.</p>
                             <button className="bg-white text-blue-600 px-6 py-2 rounded-lg font-semibold hover:bg-blue-50 transition-colors w-full">
                                 Contact Specialist
                             </button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
