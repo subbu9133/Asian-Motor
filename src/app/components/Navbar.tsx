@@ -1,9 +1,23 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Phone, Mail } from 'lucide-react';
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const scrollToSection = (sectionId: string) => {
+    setIsMenuOpen(false);
+    if (location.pathname === '/') {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      navigate('/', { state: { scrollTo: sectionId } });
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
@@ -34,7 +48,14 @@ export function Navbar() {
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <div className="flex items-center">
-              <Link to="/" className="flex items-center gap-3">
+              <Link
+                to="/"
+                className="flex items-center gap-3"
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  setIsMenuOpen(false);
+                }}
+              >
                 <div className="w-10 h-10 bg-gradient-to-br from-blue-700 to-indigo-800 rounded-xl flex items-center justify-center shadow-lg transform hover:scale-105 transition-transform">
                   <span className="text-white font-bold font-serif">AM</span>
                 </div>
@@ -59,17 +80,17 @@ export function Navbar() {
                 Services
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
               </Link>
-              <a href="#about" className="text-gray-600 hover:text-blue-700 font-medium transition-colors relative group">
+              <button onClick={() => scrollToSection('about')} className="text-gray-600 hover:text-blue-700 font-medium transition-colors relative group">
                 About Us
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
-              </a>
-              <a href="#contact" className="text-gray-600 hover:text-blue-700 font-medium transition-colors relative group">
+              </button>
+              <button onClick={() => scrollToSection('contact')} className="text-gray-600 hover:text-blue-700 font-medium transition-colors relative group">
                 Contact
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
-              </a>
-              <a href="#contact" className="bg-gray-900 text-white px-6 py-2.5 rounded-full hover:bg-black transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 font-medium text-sm">
+              </button>
+              <button onClick={() => scrollToSection('contact')} className="bg-gray-900 text-white px-6 py-2.5 rounded-full hover:bg-black transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 font-medium text-sm">
                 Get Started
-              </a>
+              </button>
             </div>
 
             {/* Mobile menu button */}
@@ -96,15 +117,15 @@ export function Navbar() {
             <Link to="/services" onClick={() => setIsMenuOpen(false)} className="block w-full text-left text-gray-700 hover:text-blue-600 py-2">
               Services
             </Link>
-            <a href="#about" onClick={() => setIsMenuOpen(false)} className="block w-full text-left text-gray-700 hover:text-blue-600 py-2">
+            <button onClick={() => scrollToSection('about')} className="block w-full text-left text-gray-700 hover:text-blue-600 py-2">
               About Us
-            </a>
-            <a href="#contact" onClick={() => setIsMenuOpen(false)} className="block w-full text-left text-gray-700 hover:text-blue-600 py-2">
+            </button>
+            <button onClick={() => scrollToSection('contact')} className="block w-full text-left text-gray-700 hover:text-blue-600 py-2">
               Contact
-            </a>
-            <a href="#contact" onClick={() => setIsMenuOpen(false)} className="w-full bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors block text-center">
+            </button>
+            <button onClick={() => scrollToSection('contact')} className="w-full bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors block text-center">
               Get Started
-            </a>
+            </button>
           </div>
         </div>
       )}

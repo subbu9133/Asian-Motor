@@ -1,51 +1,6 @@
+import { Link } from 'react-router-dom';
 import { Fuel, Gauge, Settings, ArrowRight } from 'lucide-react';
-
-const cars = [
-  {
-    id: 1,
-    name: 'Premium Sports Coupe',
-    price: '$85,900',
-    image: 'https://images.unsplash.com/photo-1691884454440-9a414bc25bbd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBzcG9ydHMlMjBjYXJ8ZW58MXx8fHwxNzY3MDA0MTgzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    year: 2024,
-    mileage: '2,500 mi',
-    transmission: 'Automatic',
-    fuel: 'Gasoline',
-    badge: 'New Arrival'
-  },
-  {
-    id: 2,
-    name: 'Luxury Executive Sedan',
-    price: '$72,500',
-    image: 'https://images.unsplash.com/photo-1758216383800-7023ee8ed42b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBzZWRhbiUyMGNhcnxlbnwxfHx8fDE3NjcwMjQ4ODh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    year: 2024,
-    mileage: '5,200 mi',
-    transmission: 'Automatic',
-    fuel: 'Gasoline',
-    badge: 'Featured'
-  },
-  {
-    id: 3,
-    name: 'Premium SUV',
-    price: '$95,000',
-    image: 'https://images.unsplash.com/photo-1633867179970-c54688bcfa33?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXYlMjB2ZWhpY2xlfGVufDF8fHx8MTc2Njk5NzUxNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    year: 2024,
-    mileage: '1,800 mi',
-    transmission: 'Automatic',
-    fuel: 'Hybrid',
-    badge: 'Hot Deal'
-  },
-  {
-    id: 4,
-    name: 'Electric Performance',
-    price: '$89,900',
-    image: 'https://images.unsplash.com/photo-1593941707874-ef25b8b4a92b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVjdHJpYyUyMGNhcnxlbnwxfHx8fDE3NjcwMjIwMjd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    year: 2024,
-    mileage: '3,100 mi',
-    transmission: 'Automatic',
-    fuel: 'Electric',
-    badge: 'Eco-Friendly'
-  }
-];
+import { cars } from '../../data/cars';
 
 export function FeaturedCars() {
   return (
@@ -58,7 +13,7 @@ export function FeaturedCars() {
             Featured Vehicles
           </h3>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Explore our handpicked selection of premium vehicles. Each car is carefully inspected 
+            Explore our handpicked selection of premium vehicles. Each car is carefully inspected
             and comes with our quality guarantee.
           </p>
         </div>
@@ -110,10 +65,13 @@ export function FeaturedCars() {
                 </div>
 
                 {/* CTA */}
-                <button className="w-full bg-gray-900 text-white py-3 rounded-lg hover:bg-blue-600 transition-colors flex items-center justify-center gap-2 group/btn">
+                <Link
+                  to={`/inventory/${car.id}`}
+                  className="w-full bg-gray-900 text-white py-3 rounded-lg hover:bg-blue-600 transition-colors flex items-center justify-center gap-2 group/btn"
+                >
                   View Details
                   <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                </button>
+                </Link>
               </div>
             </div>
           ))}
