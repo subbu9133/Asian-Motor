@@ -32,7 +32,7 @@ export function Hero() {
           </div>
 
           {/* Main heading */}
-          <h1 className="text-white text-6xl sm:text-7xl lg:text-8xl font-bold mb-8 leading-tight tracking-tight drop-shadow-2xl">
+          <h1 className="text-white text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 leading-tight tracking-tight drop-shadow-2xl">
             Find Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Dream Car</span> <br />
             at Asian Motors
           </h1>
