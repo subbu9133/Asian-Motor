@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Phone, Mail } from 'lucide-react';
+import GreenScreenImage from './GreenScreenImage';
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -50,15 +51,18 @@ export function Navbar() {
             <div className="flex items-center">
               <Link
                 to="/"
-                className="flex items-center gap-3"
+                className="flex items-center gap-1"
                 onClick={() => {
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                   setIsMenuOpen(false);
                 }}
               >
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-700 to-indigo-800 rounded-xl flex items-center justify-center shadow-lg transform hover:scale-105 transition-transform">
-                  <span className="text-white font-bold font-serif">AM</span>
-                </div>
+                <GreenScreenImage
+                  src="/logo_green_2.png"
+                  alt="Asian Motors"
+                  className="h-16 w-auto object-contain transform hover:scale-105 transition-transform"
+                  tolerance={50}
+                />
                 <div className="flex flex-col">
                   <span className="font-bold text-xl text-gray-900 tracking-tight leading-none">Asian Motors</span>
                   <span className="text-[10px] text-blue-600 uppercase tracking-widest font-semibold mt-1">Premium Dealership</span>
