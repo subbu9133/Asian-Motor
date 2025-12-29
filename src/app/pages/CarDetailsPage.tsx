@@ -33,7 +33,7 @@ export function CarDetailsPage() {
     const allImages = [car.image, ...(car.gallery || [])];
 
     return (
-        <div className="bg-white min-h-screen pt-24 pb-12">
+        <div className="bg-white min-h-screen pt-30 pb-12">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 {/* Back Link */}
